@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 5vh 1fr;
+  gap: 10px;
+  align-items: start;
+  justify-items: center;
+}
+
+body > * {
+  /* margin: auto; */
+}
+
+div[id] {
+  border: 1px solid goldenrod;
+  min-width: 10vw;
+  min-height: 50vw;
+  overflow: hidden;
+}
+
+#unsplash-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.img {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
