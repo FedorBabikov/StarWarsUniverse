@@ -10,29 +10,25 @@
 </head>
 
 <body>
+
+    <h1>Star Wars Universe</h1>
+
     <nav id="panel">
-        <h1>Star Wars Universe</h1>
-    </nav>
-    <div id="container">
         <div id="controls">
-            <input type="text" placeholder="search">
-            <button id="button">Go!</button>
+            <button class="button" id="api-people-button">People</button>
+            <button class="button" id="api-planets-button">Planets</button>
+            <button class="button" id="api-starships-button">Starships</button>
+            <select name="" id="select"></select>
+            <button class="button" id="api-go-button">GO!</button>
         </div>
-        <div id="user-input">
-            <textarea id="creative" name="creative" rows="5" cols="33">
+        <div id="message"></div>
+    </nav>
 
-            </textarea>
-        </div>
-        <div id="swapi-container">
-
-        </div>
-
-        <div id="unsplash-container">
-        </div>
-    </div>
+    <section id="container">
+    </section>
 
     <script src="./config.js"></script>
-    <script src="./src/index.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 
 </html>
