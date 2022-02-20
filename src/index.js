@@ -2,7 +2,7 @@
 
 function main() {
   const unsplashReq = `https://api.unsplash.com/search/photos/?query=library&client_id=${unsplashAccessKey}`;
-  const swapiReq = "https://swapi.dev/api/people/1/";
+  const swapiReq = "https://swapi.dev/api/people/2/";
 
   const buttonEl = document.getElementById("button");
 
