@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-div[id^="container"] {
-  border: 1px solid goldenrod;
-  overflow: hidden;
-}
-
 :root {
   --text-area-height: 10vh;
   --gap: 5vw;
@@ -18,6 +13,11 @@ body {
   min-height: 100vh;
 }
 
+h1 {
+  text-align: center;
+  padding: 5vh;
+}
+
 nav {
   display: flex;
   flex-direction: column;
@@ -25,31 +25,24 @@ nav {
   align-items: center;
 }
 
-h1 {
-  text-align: center;
-  padding: 5vh;
-}
-
 #container {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: var(--text-area-height) 1fr;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
   gap: var(--gap);
   align-items: center;
   justify-items: center;
-}
-
-#user-input {
-  height: var(--text-area-height);
-  align-self: start;
 }
 
 textarea {
   padding: 5px;
 }
 
+#playground{
+  display: flex;
+}
+
 #unsplash-container {
-  /* justify-self: flex-start; */
   display: grid;
   gap: var(--gap);
   grid-template-columns: repeat(4, 1fr);
