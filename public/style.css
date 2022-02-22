@@ -10,6 +10,7 @@
 }
 
 body {
+  font-family: "Nunito Sans", sans-serif;
   min-height: 100vh;
 }
 
@@ -38,7 +39,7 @@ textarea {
   padding: 5px;
 }
 
-#playground{
+#playground {
   display: flex;
 }
 
