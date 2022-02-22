@@ -1,9 +1,10 @@
 "use strict";
 
+import { storage } from "../storage.js";
+
 export function createPlayground(containerEl, parEl) {
-  
-  const currentStep = parseInt(sessionStorage.getItem("step"), 10) + 1;
-  const totalSteps = sessionStorage.getItem("steps");
+  const currentStep = parseInt(storage("get", "step"), 10) + 1;
+  const totalSteps = storage("get", "steps");
 
   parEl.innerHTML = `Step ${currentStep} from ${totalSteps}`;
 

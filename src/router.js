@@ -3,6 +3,7 @@
 import { renderAPIResponse } from "./pages/apiResponsePage.js";
 import { renderStartPage } from "./pages/startPage.js";
 import { renderErrorMessage } from "./pages/errorMessagePage.js";
+import { storage } from "./storage.js";
 import {
   UNSPLASH_API_BASE,
   UNSPLASH_API_KEY,
@@ -23,19 +24,17 @@ export async function router(origin, elID = "") {
       if (elID.includes("api-")) {
         if (elID.includes("-go-")) {
           if (selectHasOptions()) {
-            const storageJson = sessionStorage.getItem(
-              `${sessionStorage.getItem("lastButtonPressed")}`
+            const storageJson = storage(
+              "get",
+              `${storage("get", "lastButtonPressed")}`
             );
             const jsonSwapi = JSON.parse(storageJson);
             const jsonUnsplash = await fetchAPi(
               elID,
-              NAMES_MAP[sessionStorage.getItem("lastButtonPressed")]
+              NAMES_MAP[storage("get", "lastButtonPressed")]
             );
             renderAPIResponse(jsonUnsplash, jsonSwapi);
-            sessionStorage.setItem(
-              "step",
-              `${+sessionStorage.getItem("step") + 1}`
-            );
+            storage("set", "step", `${+storage("get", "step") + 1}`);
           } else {
             renderErrorMessage(
               "Please first select some person/planet/starship"
@@ -46,11 +45,11 @@ export async function router(origin, elID = "") {
           renderAPIResponse(null, jsonSwapi);
 
           const storageRecord = `${elID.split("-")[1]}`;
-          sessionStorage.setItem("lastButtonPressed", storageRecord);
+          storage("set", "lastButtonPressed", storageRecord);
 
           const jsonInStorage = sessionStorage.getItem(storageRecord);
           if (!jsonInStorage) {
-            sessionStorage.setItem(storageRecord, JSON.stringify(jsonSwapi));
+            storage("set", storageRecord, JSON.stringify(jsonSwapi));
           }
         }
       }
@@ -69,8 +68,8 @@ function writeNumberOfSteps() {
       renderErrorMessage("Please enter a number between 1 and 5");
       return false;
     } else {
-      sessionStorage.setItem("steps", `${inpValue.toString()}`);
-      sessionStorage.setItem("step", "0");
+      storage("set", "steps", `${inpValue.toString()}`);
+      storage("set", "step", "0");
       parEl.innerHTML = "";
       inpEl.remove();
     }
