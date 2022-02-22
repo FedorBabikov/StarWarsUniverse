@@ -1,6 +1,6 @@
 "use strict";
 
-export function storage(operation, ...value) {
+export function useStorage(operation, ...value) {
   switch (operation) {
     case "get":
       return sessionStorage.getItem(value[0]);
@@ -9,4 +9,8 @@ export function storage(operation, ...value) {
       sessionStorage.setItem(value[0], value[1]);
       break;
   }
+}
+
+export function saveUserData(textAreaEl) {
+  
 }

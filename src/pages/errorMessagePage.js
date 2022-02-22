@@ -1,6 +1,6 @@
 "use strict";
 
-import { createErrMessage } from "../views/ErrMessageView.js";
+import { createErrMessage } from "../views/errMessageView.js";
 
 export function renderErrorMessage(errMsg) {
   const errEl = document.getElementById("message");
