@@ -5,9 +5,11 @@ import { createPlayground } from "../views/mainView.js";
 
 export function renderAPIResponse(jsonUnsplash, jsonSwapi) {
   if (jsonUnsplash) {
+    const parEl = document.getElementById("stepsParagraph");
     const containerEl = document.getElementById("container");
+
     containerEl.innerHTML = "";
-    createPlayground(containerEl);
+    createPlayground(containerEl, parEl);
 
     const swapiEl = document.getElementById("swapi-container");
     const unsplashEl = document.getElementById("unsplash-container");
