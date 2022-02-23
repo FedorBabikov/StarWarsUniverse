@@ -2,6 +2,7 @@
 
 import { renderAPIResponse } from "./pages/apiResponsePage.js";
 import { renderStartPage } from "./pages/startPage.js";
+import { renderResultPage } from "./pages/resultPage.js";
 import { renderErrorMessage } from "./pages/errorMessagePage.js";
 import { useStorage, saveUserData } from "./storage.js";
 import { fetchAPi } from "./api.js";
@@ -17,18 +18,20 @@ export async function router(origin, originID = "") {
       const containerEl = document.getElementById("container");
       errEl.innerHTML = "";
 
-      if (!writeNumberOfSteps()) return;
-
       if (originID.includes("-go-")) {
         if (selectHasOptions()) {
+          if (!writeNumberOfSteps()) return;
+
           const lastButtonPressed = useStorage("get", "lastButtonPressed");
-          const currentStep = parseInt(useStorage("get", "step"));
+          const totalSteps = parseInt(useStorage("get", "steps"));
+          const currentStep = parseInt(useStorage("get", "step")) || 0;
           const textAreaEl = document.getElementById("creative");
 
-          if (currentStep != 0 && !saveUserData(textAreaEl)) return;
+          if (textAreaEl && !saveUserData(textAreaEl, currentStep)) return;
 
-          if (currentStep == TOTAL_STEPS[0]) {
-            renderResultPage();
+          if (currentStep === totalSteps) {
+            renderResultPage(containerEl);
+            sessionStorage.clear();
             return;
           }
 
@@ -42,7 +45,6 @@ export async function router(origin, originID = "") {
 
           containerEl.innerHTML = "";
           renderAPIResponse(jsonUnsplash, jsonSwapi);
-
           useStorage("set", "step", `${currentStep + 1}`);
         } else {
           renderErrorMessage("Please first select some person/planet/starship");
@@ -77,7 +79,6 @@ function writeNumberOfSteps() {
       return false;
     } else {
       useStorage("set", "steps", `${inpValue.toString()}`);
-      useStorage("set", "step", "0");
       parEl.innerHTML = "";
       inpEl.remove();
     }
