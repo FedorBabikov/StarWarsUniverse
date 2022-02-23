@@ -13,6 +13,4 @@ export function createResult(containerEl, userResults) {
   tryAgainButton.innerHTML = "Try again!";
 
   containerEl.appendChild(tryAgainButton);
-
-  return tryAgainButton;
 }

@@ -3,11 +3,11 @@
 import { useStorage } from "../storage.js";
 import { TEXT_AREA_MAX } from "../constants.js";
 
-export function createPlayground(containerEl, parEl) {
+export function createPlayground(containerEl, paragraphEl) {
   const currentStep = parseInt(useStorage("get", "step"));
   const totalSteps = useStorage("get", "steps");
 
-  parEl.innerHTML =
+  paragraphEl.innerHTML =
     currentStep > totalSteps ? "" : `Step ${currentStep} from ${totalSteps}`;
 
   containerEl.innerHTML = `

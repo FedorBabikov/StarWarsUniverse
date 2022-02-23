@@ -26,6 +26,7 @@ export async function router(origin, originID = "") {
       sessionStorage.clear();
       renderStartPage(containerEl);
       break;
+
     case "controls-button":
       errEl.innerHTML = "";
 
@@ -59,12 +60,14 @@ export async function router(origin, originID = "") {
           originID,
           NAMES_MAP[lastButtonPressed]
         );
+
         renderAPIResponse(jsonUnsplash, jsonSwapi);
 
         if (currentStep === totalSteps + 1) {
           renderResultPage(containerEl);
           return;
         }
+
         useStorage("set", "step", `${currentStep + 1}`);
       } else {
         const storageRecord = `${originID.split("-")[1]}`;
@@ -76,6 +79,7 @@ export async function router(origin, originID = "") {
           jsonSwapi = await fetchAPi(originID);
           useStorage("set", storageRecord, JSON.stringify(jsonSwapi));
         }
+
         renderAPIResponse(null, jsonSwapi);
       }
       break;
@@ -89,11 +93,14 @@ function StepsTotalSaved(inpEl, parEl) {
     renderErrorMessage(
       `Please enter a number between one and ${TOTAL_STEPS[1]}`
     );
+
     return false;
   } else {
     useStorage("set", "steps", `${inpValue.toString()}`);
+
     parEl.innerHTML = "";
     inpEl.style.display = "none";
+
     return true;
   }
 }

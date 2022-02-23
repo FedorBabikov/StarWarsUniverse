@@ -15,7 +15,9 @@ export function renderResultPage(containerEl) {
     }
   );
 
-  const tryAgainButton = createResult(containerEl, userResults);
+  createResult(containerEl, userResults);
+
+  const tryAgainButton = document.getElementById("again-button");
   tryAgainButton.addEventListener("click", () => {
     router("start");
   });
