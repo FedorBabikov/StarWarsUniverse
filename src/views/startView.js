@@ -1,7 +1,11 @@
 "use strict";
 
-export function createAppDescription() {
-  const pEl = document.createElement("p");
-  pEl.innerHTML = "Here goes the app description.";
-  return pEl;
+import { START_QUOTES } from "../constants.js";
+
+export function createAppDescription(containerEl) {
+  for (const paragraph of START_QUOTES) {
+    const pEl = document.createElement("p");
+    pEl.innerHTML = paragraph;
+    containerEl.appendChild(pEl);
+  }
 }

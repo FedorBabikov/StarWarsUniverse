@@ -13,7 +13,7 @@ export function useStorage(operation, ...value) {
   }
 }
 
-export function saveUserData(textAreaEl, currentStep) {
+export function UserDataSaved(textAreaEl, currentStep) {
   const textAreaValue = textAreaEl.value;
 
   if (textAreaValue === "") {

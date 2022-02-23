@@ -7,9 +7,8 @@ export function createPlayground(containerEl, parEl) {
   const currentStep = parseInt(useStorage("get", "step"));
   const totalSteps = useStorage("get", "steps");
 
-  if (currentStep) {
-    parEl.innerHTML = `Step ${currentStep} from ${totalSteps}`;
-  }
+  parEl.innerHTML =
+    currentStep > totalSteps ? "" : `Step ${currentStep} from ${totalSteps}`;
 
   containerEl.innerHTML = `
     <div id='textarea'>

@@ -1,6 +1,8 @@
 "use strict";
 
+import { router } from "../router.js";
 import { useStorage } from "../storage.js";
+import { createResult } from "../views/resultView.js";
 
 export function renderResultPage(containerEl) {
   containerEl.innerHTML = "";
@@ -13,9 +15,8 @@ export function renderResultPage(containerEl) {
     }
   );
 
-  for (const result of userResults) {
-    const pEl = document.createElement("p");
-    pEl.innerHTML = result;
-    containerEl.appendChild(pEl);
-  }
+  const tryAgainButton = createResult(containerEl, userResults);
+  tryAgainButton.addEventListener("click", () => {
+    router("start");
+  });
 }

@@ -5,6 +5,7 @@ import {
   SWAPI_API_BASE,
   UNSPLASH_API_BASE,
   UNSPLASH_API_KEY,
+  RANDOM_NUM_STRING,
 } from "./constants.js";
 
 export async function fetchAPi(elID, queryString = "") {
@@ -29,7 +30,7 @@ function getApiURL(buttonId, queryString) {
       url = `${SWAPI_API_BASE}${buttonId.split("-")[1]}`;
       break;
     case "api-go-button":
-      url = `${UNSPLASH_API_BASE}?query=${queryString}&client_id=${UNSPLASH_API_KEY}`;
+      url = `${UNSPLASH_API_BASE}?page=${RANDOM_NUM_STRING}&query=${queryString}&client_id=${UNSPLASH_API_KEY}`;
       break;
   }
 
