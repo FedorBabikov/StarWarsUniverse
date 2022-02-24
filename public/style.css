@@ -6,7 +6,7 @@
 
 :root {
   --text-area-height: 10vh;
-  --gap: 5vw;
+  --gap: 2vw;
 }
 
 body {
@@ -28,6 +28,7 @@ nav {
 
 #controls{
   display: flex;
+  gap: var(--gap);
 }
 
 #container {
@@ -51,6 +52,14 @@ textarea {
   display: grid;
   gap: var(--gap);
   grid-template-columns: repeat(4, 1fr);
+}
+
+#swapi-container{
+  padding: 7px;
+}
+
+#swapi-container p{
+  margin-bottom: 8px;
 }
 
 .img {

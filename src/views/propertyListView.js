@@ -14,10 +14,11 @@ export function createPropertyList(jsonSwapi, swapiEl, selectedItem) {
   const optionsType = useStorage("get", "lastButtonPressed");
   const optionsToDisplay = JSON_PROPS[optionsType];
   // render the props
-  for (const [key, value] of Object.entries(objWithChosenOption)) {
+  for (let [key, value] of Object.entries(objWithChosenOption)) {
     if (optionsToDisplay.includes(key)) {
+      key = key.replace("_", " ");
       const pEl = document.createElement("p");
-      pEl.innerHTML = `${key}:${value}`;
+      pEl.innerHTML = `${key}: ${value}`;
       swapiEl.appendChild(pEl);
     }
   }
