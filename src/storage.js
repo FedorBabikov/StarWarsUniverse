@@ -3,13 +3,20 @@
 import { renderErrorMessage } from "./pages/errorMessagePage.js";
 
 // helper function to work with sessionStorage object
-export function useStorage(operation, ...value) {
-  switch (operation) {
+export function useStorage(...value) {
+  switch (value[0]) {
     case "get":
-      return sessionStorage.getItem(value[0]);
+      switch (value[1]) {
+        case "int":
+          return parseInt(sessionStorage.getItem(value[2]));
+        case "json":
+          return JSON.parse(sessionStorage.getItem(value[2]));
+        default:
+          return sessionStorage.getItem(value[2]);
+      }
       break;
     case "set":
-      sessionStorage.setItem(value[0], value[1]);
+      sessionStorage.setItem(value[1], value[2]);
       break;
   }
 }
@@ -18,7 +25,7 @@ export function useStorage(operation, ...value) {
 export function UserDataSaved(textAreaEl, currentStep) {
   const textAreaValue = textAreaEl.value;
 
-  if (textAreaValue === "") {
+  if (textAreaValue === "" && currentStep !== 1) {
     renderErrorMessage("Please drop a few thoughts before going further...");
     return false;
   } else {

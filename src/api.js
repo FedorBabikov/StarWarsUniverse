@@ -13,7 +13,13 @@ export async function fetchAPi(elID, queryString = "") {
   try {
     const url = getApiURL(elID, queryString);
     const response = await fetch(url);
-    return response.json();
+    if (response.ok) {
+      return response.json();
+    } else {
+      renderErrorMessage(
+        `The API server responded with status ${response.status}`
+      );
+    }
   } catch (error) {
     renderErrorMessage(
       `Something went terribly wrong. Please try again later ${error}`

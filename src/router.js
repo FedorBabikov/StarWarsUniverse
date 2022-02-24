@@ -23,7 +23,8 @@ export async function router(origin, originID = "") {
       inpEl.style.display = "inline-block";
       // and erase content from some others as well
       containerEl.innerHTML = "";
-      selectEl.innerHTML = "";
+      selectEl.innerHTML =
+        "<option value='Choose a category' disabled selected>&#8592; Choose a category</option>";
       sessionStorage.clear();
       // and then draw the new content
       renderStartPage(containerEl);
@@ -36,9 +37,8 @@ export async function router(origin, originID = "") {
         // we come here from GO! button
         const currentStep =
           // get step from Storage - or (if still null) set to Storage as 1 and return 1 (comma operator)
-          parseInt(useStorage("get", "step")) ||
+          useStorage("get", "int", "step") ||
           (useStorage("set", "step", "1"), 1);
-
         if (!selectHasOptions(selectEl)) {
           // if select is not populated yet - we should get the options from API
           renderErrorMessage("Please first select some person/planet/starship");
@@ -59,17 +59,17 @@ export async function router(origin, originID = "") {
           if (!UserDataSaved(textAreaEl, currentStep)) return;
         }
 
-        // if all the above is set and selected properly - fetch data from API...
-        const lastButtonPressed = useStorage("get", "lastButtonPressed");
-        const totalSteps = parseInt(useStorage("get", "steps"));
+        //if all the above is set and selected properly - fetch data from API...
 
-        const jsonSwapi = JSON.parse(useStorage("get", `${lastButtonPressed}`));
-        const jsonUnsplash = await fetchAPi(
-          originID,
-          NAMES_MAP[lastButtonPressed]
-        );
-        // ... and show the data in the DOM
-        renderAPIResponse(jsonUnsplash, jsonSwapi);
+        const lastButtonPressed = useStorage("get", "", "lastButtonPressed");
+        const totalSteps = useStorage("get", "int", "steps");
+        console.log(totalSteps);
+
+        const jsonSwapi = useStorage("get", "json", `${lastButtonPressed}`);
+        fetchAPi(originID, NAMES_MAP[lastButtonPressed]).then((jsonUnsplash) =>
+          renderAPIResponse(jsonUnsplash, jsonSwapi)
+        ); // ... and show the data in the DOM
+
         // do so until the limit of steps has been hit - then show result page
         if (currentStep === totalSteps + 1) {
           renderResultPage(containerEl);
@@ -87,7 +87,7 @@ export async function router(origin, originID = "") {
         let jsonSwapi;
         // if json from that API has already been received on some prev step - get it from Storage
         // otherwise, fetch it from the API and then pui it to Storage
-        if (!(jsonSwapi = JSON.parse(useStorage("get", SelectOptionsType)))) {
+        if (!(jsonSwapi = useStorage("get", "json", SelectOptionsType))) {
           jsonSwapi = await fetchAPi(originID);
           useStorage("set", SelectOptionsType, JSON.stringify(jsonSwapi));
         }

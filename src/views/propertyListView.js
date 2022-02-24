@@ -11,7 +11,7 @@ export function createPropertyList(jsonSwapi, swapiEl, selectedItem) {
     (obj) => obj.name === selectedItem
   );
   // use a constant obg of arrays - to define which props to render
-  const optionsType = useStorage("get", "lastButtonPressed");
+  const optionsType = useStorage("get", "", "lastButtonPressed");
   const optionsToDisplay = JSON_PROPS[optionsType];
   // render the props
   for (let [key, value] of Object.entries(objWithChosenOption)) {

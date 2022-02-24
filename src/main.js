@@ -2,12 +2,17 @@
 
 import { router } from "./router.js";
 import { TOTAL_STEPS } from "./constants.js";
+import { TEXT_AREA_MAX } from "./constants.js";
 
 function main() {
   // placeholder text for input field: part of it - from constant
   document.getElementById(
     "stepsInput"
   ).placeholder = `one to ${TOTAL_STEPS[1]}`;
+
+  document.getElementById(
+    "creative"
+  ).placeholder = `Add your thoughts here...(max ${TEXT_AREA_MAX} letters)`;
 
   const buttons = document.getElementsByClassName("button");
 

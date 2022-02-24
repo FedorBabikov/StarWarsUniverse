@@ -13,7 +13,7 @@ export function renderResultPage(containerEl) {
   //then get an array of corresponding values from the Storage using map()
   const userResults = SSkeys.filter((key) => key.match(/step\d+/)).map(
     (key) => {
-      return useStorage("get", key);
+      return useStorage("get", "", key);
     }
   );
 
