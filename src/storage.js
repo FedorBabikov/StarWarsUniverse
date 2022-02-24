@@ -2,6 +2,7 @@
 
 import { renderErrorMessage } from "./pages/errorMessagePage.js";
 
+// helper function to work with sessionStorage object
 export function useStorage(operation, ...value) {
   switch (operation) {
     case "get":
@@ -13,6 +14,7 @@ export function useStorage(operation, ...value) {
   }
 }
 
+// (boolean) save user data into Storage or show message(if no data provided)
 export function UserDataSaved(textAreaEl, currentStep) {
   const textAreaValue = textAreaEl.value;
 

@@ -8,6 +8,7 @@ import {
   RANDOM_NUM_STRING,
 } from "./constants.js";
 
+// this func gets all the stuff from all APIs
 export async function fetchAPi(elID, queryString = "") {
   try {
     const url = getApiURL(elID, queryString);
@@ -20,6 +21,7 @@ export async function fetchAPi(elID, queryString = "") {
   }
 }
 
+// compose request for API based on button id and some constants
 function getApiURL(buttonId, queryString) {
   let url;
 

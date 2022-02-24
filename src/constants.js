@@ -23,6 +23,6 @@ export const START_QUOTES = [
 ];
 
 export const RESULT_QUOTES = [
-  "- Your eyes can deceive you; don’t trust them. — Obi-Wan Kenobi",
+  "- Your eyes can deceive you; dont trust them. — Obi-Wan Kenobi",
   "- Your focus determines your reality. — Qui-Gon Jinn",
 ];

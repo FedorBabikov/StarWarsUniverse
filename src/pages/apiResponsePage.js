@@ -16,11 +16,10 @@ export function renderAPIResponse(jsonUnsplash, jsonSwapi) {
 
     const swapiEl = document.getElementById("swapi-container");
     const unsplashEl = document.getElementById("unsplash-container");
-
+//this is the option selected by user
     const selectedItem = selectEl.options[selectEl.selectedIndex].value;
 
     createPropertyList(jsonSwapi, swapiEl, selectedItem);
-
     createImageGrid(jsonUnsplash, unsplashEl);
   } else if (jsonSwapi) {
     populateSelectElement(jsonSwapi, selectEl);

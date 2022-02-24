@@ -4,9 +4,11 @@ import { useStorage } from "../storage.js";
 import { TEXT_AREA_MAX } from "../constants.js";
 
 export function createPlayground(containerEl, paragraphEl) {
+  //get data from sessionStorage
   const currentStep = parseInt(useStorage("get", "step"));
   const totalSteps = useStorage("get", "steps");
 
+  //show the data up to certain point; then don't show
   paragraphEl.innerHTML =
     currentStep > totalSteps ? "" : `Step ${currentStep} from ${totalSteps}`;
 
