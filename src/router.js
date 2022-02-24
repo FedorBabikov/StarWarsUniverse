@@ -81,15 +81,15 @@ export async function router(origin, originID = "") {
         //we come here from other buttons on the control panel (not `GO!`)
 
         // get part of the button's id - and put that in Storage
-        const storageRecord = `${originID.split("-")[1]}`;
-        useStorage("set", "lastButtonPressed", storageRecord);
+        const SelectOptionsType = `${originID.split("-")[1]}`;
+        useStorage("set", "lastButtonPressed", SelectOptionsType);
 
         let jsonSwapi;
         // if json from that API has already been received on some prev step - get it from Storage
         // otherwise, fetch it from the API and then pui it to Storage
-        if (!(jsonSwapi = JSON.parse(useStorage("get", storageRecord)))) {
+        if (!(jsonSwapi = JSON.parse(useStorage("get", SelectOptionsType)))) {
           jsonSwapi = await fetchAPi(originID);
-          useStorage("set", storageRecord, JSON.stringify(jsonSwapi));
+          useStorage("set", SelectOptionsType, JSON.stringify(jsonSwapi));
         }
         // show the data in the DOM
         renderAPIResponse(null, jsonSwapi);

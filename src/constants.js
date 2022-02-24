@@ -6,6 +6,20 @@ export const UNSPLASH_API_KEY = `${unsplashAccessKey}`;
 export const TOTAL_STEPS = [5, "five"];
 export const RANDOM_NUM_STRING = `${Math.floor(Math.random() * 10) + 1}`;
 export const TEXT_AREA_MAX = 500;
+
+export const JSON_PROPS = {
+  people: ["name", "gender", "birth_year", "hair_color", "height"],
+  planets: [
+    "name",
+    "climate",
+    "diameter",
+    "gravity",
+    "terrain",
+    "orbital_period",
+  ],
+  starships: ["name", "model", "passengers", "crew", "cargo_capacity"],
+};
+
 export const NAMES_MAP = {
   people: "star+wars+hero",
   planets: "planets",
