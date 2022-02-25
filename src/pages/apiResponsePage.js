@@ -5,9 +5,7 @@ import { createImageGrid } from "../views/imageGridView.js";
 import { createPropertyList } from "../views/propertyListView.js";
 import { populateSelectElement } from "../views/populateSelectElemView.js";
 
-export function renderAPIResponse(jsonUnsplash, jsonSwapi) {
-  const selectEl = document.getElementById("select");
-
+export function renderAPIResponse(jsonUnsplash, jsonSwapi, selectEl) {
   if (jsonUnsplash) {
     const paragraphEl = document.getElementById("stepsParagraph");
     const containerEl = document.getElementById("container");
@@ -16,7 +14,7 @@ export function renderAPIResponse(jsonUnsplash, jsonSwapi) {
 
     const swapiEl = document.getElementById("swapi-container");
     const unsplashEl = document.getElementById("unsplash-container");
-//this is the option selected by user
+    //this is the option selected by user
     const selectedItem = selectEl.options[selectEl.selectedIndex].value;
 
     createPropertyList(jsonSwapi, swapiEl, selectedItem);

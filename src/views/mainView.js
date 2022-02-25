@@ -12,9 +12,7 @@ export function createPlayground(containerEl, paragraphEl) {
     currentStep > totalSteps ? "" : `Step ${currentStep} from ${totalSteps}`;
 
   containerEl.innerHTML = `
-    <div id="playground">
         <div id="unsplash-container"></div>
         <div id="swapi-container"></div>
-    </div>
   `;
 }

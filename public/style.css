@@ -5,18 +5,24 @@
 }
 
 :root {
-  --text-area-height: 10vh;
-  --gap: 2vw;
+  --gap: 10px;
 }
 
 body {
+  margin: 10px;
+  background-color: burlywood;
+  border: 1px solid orange;
+  border-radius: 15px;
   font-family: "Nunito Sans", sans-serif;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
 }
 
 h1 {
   text-align: center;
-  padding: 5vh;
+  padding: 10px;
 }
 
 nav {
@@ -26,15 +32,15 @@ nav {
   align-items: center;
 }
 
-#controls{
+#controls {
   display: flex;
   gap: var(--gap);
+  padding: 10px;
 }
 
 #container {
   border: 1px solid red;
   display: flex;
-  flex-direction: column;
   gap: var(--gap);
   align-items: center;
   justify-items: center;
@@ -44,27 +50,22 @@ textarea {
   padding: 5px;
 }
 
-#playground {
-  display: flex;
-}
-
 #unsplash-container {
   display: grid;
   gap: var(--gap);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
-#swapi-container{
-  padding: 7px;
-}
-
-#swapi-container p{
-  margin-bottom: 8px;
+#swapi-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
 }
 
 .img {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

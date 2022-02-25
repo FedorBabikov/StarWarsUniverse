@@ -39,6 +39,7 @@ export async function router(origin, originID = "") {
           // get step from Storage - or (if still null) set to Storage as 1 and return 1 (comma operator)
           useStorage("get", "int", "step") ||
           (useStorage("set", "step", "1"), 1);
+
         if (!selectHasOptions(selectEl)) {
           // if select is not populated yet - we should get the options from API
           renderErrorMessage("Please first select some person/planet/starship");
@@ -63,11 +64,10 @@ export async function router(origin, originID = "") {
 
         const lastButtonPressed = useStorage("get", "", "lastButtonPressed");
         const totalSteps = useStorage("get", "int", "steps");
-        console.log(totalSteps);
-
         const jsonSwapi = useStorage("get", "json", `${lastButtonPressed}`);
+
         fetchAPi(originID, NAMES_MAP[lastButtonPressed]).then((jsonUnsplash) =>
-          renderAPIResponse(jsonUnsplash, jsonSwapi)
+          renderAPIResponse(jsonUnsplash, jsonSwapi, selectEl)
         ); // ... and show the data in the DOM
 
         // do so until the limit of steps has been hit - then show result page
