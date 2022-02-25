@@ -3,23 +3,36 @@
 import { createPlayground } from "../views/mainView.js";
 import { createImageGrid } from "../views/imageGridView.js";
 import { createPropertyList } from "../views/propertyListView.js";
-import { populateSelectElement } from "../views/populateSelectElemView.js";
+import { createSelectOption } from "../views/selectOptionView.js";
 
-export function renderAPIResponse(jsonUnsplash, jsonSwapi, selectEl) {
+export function renderAPIResponse(
+  jsonUnsplash,
+  jsonSwapi,
+  selectEl,
+  parEl,
+  containerEl,
+  textAreaEl
+) {
   if (jsonUnsplash) {
-    const paragraphEl = document.getElementById("stepsParagraph");
-    const containerEl = document.getElementById("container");
-
-    createPlayground(containerEl, paragraphEl);
+    createPlayground(containerEl, parEl, textAreaEl);
 
     const swapiEl = document.getElementById("swapi-container");
     const unsplashEl = document.getElementById("unsplash-container");
-    //this is the option selected by user
+
+    swapiEl.innerHTML = "";
+    unsplashEl.innerHTML = "";
+    textAreaEl.value = "";
+
+    //get value of the option selected by user
     const selectedItem = selectEl.options[selectEl.selectedIndex].value;
 
-    createPropertyList(jsonSwapi, swapiEl, selectedItem);
     createImageGrid(jsonUnsplash, unsplashEl);
+    createPropertyList(jsonSwapi, swapiEl, selectedItem);
   } else if (jsonSwapi) {
-    populateSelectElement(jsonSwapi, selectEl);
+    selectEl.innerHTML = "";
+    for (const obj of jsonSwapi) {
+      const optionEl = createSelectOption(obj.name);
+      selectEl.appendChild(optionEl);
+    }
   }
 }

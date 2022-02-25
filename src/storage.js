@@ -16,20 +16,16 @@ export function useStorage(...value) {
       }
       break;
     case "set":
-      sessionStorage.setItem(value[1], value[2]);
+      switch (value[1]) {
+        case "people":
+        case "planets":
+        case "starships":
+          sessionStorage.setItem(value[1], JSON.stringify(value[2]));
+          break;
+        default:
+          sessionStorage.setItem(value[1], value[2]);
+          break;
+      }
       break;
-  }
-}
-
-// (boolean) save user data into Storage or show message(if no data provided)
-export function UserDataSaved(textAreaEl, currentStep) {
-  const textAreaValue = textAreaEl.value;
-
-  if (textAreaValue === "" && currentStep !== 1) {
-    renderErrorMessage("Please drop a few thoughts before going further...");
-    return false;
-  } else {
-    useStorage("set", `step${currentStep}`, `${textAreaValue}`);
-    return true;
   }
 }

@@ -6,27 +6,33 @@
 
 :root {
   --gap: 10px;
+  background-color: snow;
 }
 
 body {
   margin: 10px;
   background-color: burlywood;
-  border: 1px solid orange;
+  border: 2px solid brown;
   border-radius: 15px;
   font-family: "Nunito Sans", sans-serif;
-  min-height: 100vh;
+  min-height: calc(100vh - 20px);
   display: flex;
   flex-direction: column;
   gap: var(--gap);
 }
+#panel,
+#textarea-container,
+#container {
+  display: flex;
+}
 
 h1 {
+  display: block;
   text-align: center;
   padding: 10px;
 }
 
 nav {
-  display: flex;
   flex-direction: column;
   gap: var(--gap);
   align-items: center;
@@ -39,14 +45,12 @@ nav {
 }
 
 #container {
-  border: 1px solid red;
-  display: flex;
   gap: var(--gap);
-  align-items: center;
-  justify-items: center;
+  justify-content: space-between;
 }
 
 textarea {
+  margin: auto;
   padding: 5px;
 }
 
@@ -59,8 +63,13 @@ textarea {
 #swapi-container {
   padding: 10px;
   display: flex;
+  justify-self: flex-end;
   flex-direction: column;
   gap: var(--gap);
+}
+
+#swapi-container p::first-letter {
+  text-transform: capitalize;
 }
 
 .img {
@@ -69,4 +78,18 @@ textarea {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.result {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-paragraph {
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px;
 }

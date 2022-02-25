@@ -1,7 +1,10 @@
 "use strict";
 
-import { createAppDescription } from "../views/startView.js";
+import { createQuoteParagraph } from "../views/startView.js";
+import { START_QUOTES } from "../constants.js";
 
 export function renderStartPage(containerEl) {
-  createAppDescription(containerEl);
+  for (const quote of START_QUOTES) {
+    containerEl.appendChild(createQuoteParagraph(quote));
+  }
 }

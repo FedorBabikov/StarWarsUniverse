@@ -10,9 +10,9 @@ function main() {
     "stepsInput"
   ).placeholder = `one to ${TOTAL_STEPS[1]}`;
 
-  document.getElementById(
-    "creative"
-  ).placeholder = `Add your thoughts here...(max ${TEXT_AREA_MAX} letters)`;
+  const textAreaEl = document.getElementById("creative");
+  textAreaEl.placeholder = `Add your thoughts here...(max ${TEXT_AREA_MAX} letters)`;
+  textAreaEl.style.display = "none";
 
   const buttons = document.getElementsByClassName("button");
 

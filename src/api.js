@@ -8,13 +8,12 @@ import {
   RANDOM_NUM_STRING,
 } from "./constants.js";
 
-// this func gets all the stuff from all APIs
-export async function fetchAPi(elID, queryString = "") {
+export async function fetchAPi(category, queryString) {
   try {
-    const url = getApiURL(elID, queryString);
+    const url = getApiURL(category, queryString);
     const response = await fetch(url);
     if (response.ok) {
-      return response.json();
+      return await response.json();
     } else {
       renderErrorMessage(
         `The API server responded with status ${response.status}`
@@ -27,17 +26,17 @@ export async function fetchAPi(elID, queryString = "") {
   }
 }
 
-// compose request for API based on button id and some constants
-function getApiURL(buttonId, queryString) {
+// compose API request string based on button id and some constants
+function getApiURL(category, queryString) {
   let url;
 
-  switch (buttonId) {
-    case "api-people-button":
-    case "api-planets-button":
-    case "api-starships-button":
-      url = `${SWAPI_API_BASE}${buttonId.split("-")[1]}`;
+  switch (category) {
+    case "people":
+    case "planets":
+    case "starships":
+      url = `${SWAPI_API_BASE}${category}`;
       break;
-    case "api-go-button":
+    case "go":
       url = `${UNSPLASH_API_BASE}?page=${RANDOM_NUM_STRING}&query=${queryString}&client_id=${UNSPLASH_API_KEY}`;
       break;
   }
